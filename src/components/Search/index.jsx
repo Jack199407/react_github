@@ -1,18 +1,25 @@
 import React, { Component } from "react";
-import "./index.css";
+import Pubsub from "pubsub-js";
 import axios from "axios";
+import "./index.css";
 
 export default class Search extends Component {
   search = () => {
-    const { updateAppState } = this.props;
     const { value } = this.keyWordEl;
-    updateAppState({ isFirst: false, isLoading: true });
+    if (value.trim() === "" || value === null) {
+      alert("input can't be empty");
+      return;
+    }
+    Pubsub.publish("UserTopic", { isFirst: false, isLoading: true });
     axios.get(`https://api.github.com/search/users?q=${value}`).then(
       (response) => {
-        updateAppState({ isLoading: false, users: response.data.items });
+        Pubsub.publish("UserTopic", {
+          isLoading: false,
+          users: response.data.items,
+        });
       },
       (error) => {
-        updateAppState({ isLoading: false, err: error.message });
+        Pubsub.publish("UserTopic", { isLoading: false, err: error.message });
       }
     );
   };

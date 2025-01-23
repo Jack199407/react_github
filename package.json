@@ -7,6 +7,7 @@
     "cra-template": "1.2.0",
     "nanoid": "^5.0.9",
     "prop-types": "^15.8.1",
+    "pubsub-js": "^1.9.5",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-scripts": "5.0.1",
