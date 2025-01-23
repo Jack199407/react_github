@@ -1,0 +1,10 @@
+.jumbotron {
+  min-height: 5rem;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  background-color: #f7f7f7;
+}
+
+input {
+  width: 160px;
+}
